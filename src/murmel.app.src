@@ -1,0 +1,11 @@
+{application, murmel,
+ [
+  {description, "murmur hash binding from c lib"},
+  {vsn, git},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
