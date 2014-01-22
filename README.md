@@ -1,4 +1,7 @@
 # Murmerl - Murmur3 hash as Erlang NIF
+
+[![Build Status](https://travis-ci.org/sideshowcoder/murmerl.png?branch=master)](https://travis-ci.org/sideshowcoder/murmerl)
+
 This is a port of the Murmur3 hash function. Murmur3 is a non-cryptographic
 hash, designed to be fast and excellent-quality for making things like hash
 tables or bloom filters. This is a wrapper in for Erlang using NIFs.
