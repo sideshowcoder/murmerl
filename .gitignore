@@ -3,3 +3,5 @@ ebin
 .eunit
 priv
 *.o
+.depsolver_plt
+doc
