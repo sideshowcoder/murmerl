@@ -11,10 +11,22 @@ The code was developed using Erlang/OTP R1603 with the bundled version of rebar
 and murmur3.
 
 ## Building and testing
-Build and test is done using rebar
+Build and test is done using rebar, and make. To build an test run
 
-    $ ./rebar compile
-    $ ./rebar eunit
+    $ make all
+
+To run only the tests run
+
+    $ make test
+
+Murmerl contains dialyzer spec, the first run will create the PLT file which can
+take a while.
+
+    $ make dialyzer
+
+Run typer to output the -spec
+
+    $ make typer
 
 ## Usage
 Build and load via
@@ -29,29 +41,30 @@ Build and load via
 
 ## Functions
 
-### murmur3_x86_32(Subject, Seed) -> Binary
+### murmur3_32(Value, Seed) -> Binary
 Types:
-    Subject = string()
+    Value = string()
     Seed = integer()
 
 creates a 32Bit binary, from the input string using Int as a seed. The C code
 is optimized for x86, but works on x64 as well.
 
-### murmur3_x86_128(String, Int) -> Binary
+### murmur3_128(Value, Seed) -> Binary
 Types:
-    Subject = string()
+    Value = string()
     Seed = integer()
 
 creates a 128Bit binary, from the input string using Int as a seed. The C code
 is optimized for x86, but works on x64 as well.
 
-### murmur3_x64_128(String, Int) -> Binary
+### murmur3_128(Value, Seed, Arch) -> Binary
 Types:
-    Subject = string()
+    Value = string()
     Seed = integer()
+    Arch = x86 | x64
 
-creates a 128Bit binary, from the input string using Int as a seed. The C code
-is optimized for x64, but works on x86 as well.
+creates a 128Bit binary, from the input string using Int as a seed. It allows to
+select the optimized code for the archtecture, so either x64 or x86.
 
 ## License
 Murmur3 port in C was done by Peter Scott and is available on
