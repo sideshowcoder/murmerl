@@ -15,15 +15,15 @@
 #ifdef __GNUC__
 #define FORCE_INLINE __attribute__((always_inline)) inline
 #else
-#define FORCE_INLINE
+#define FORCE_INLINE inline
 #endif
 
-static inline FORCE_INLINE uint32_t rotl32 ( uint32_t x, int8_t r )
+static FORCE_INLINE uint32_t rotl32 ( uint32_t x, int8_t r )
 {
   return (x << r) | (x >> (32 - r));
 }
 
-static inline FORCE_INLINE uint64_t rotl64 ( uint64_t x, int8_t r )
+static FORCE_INLINE uint64_t rotl64 ( uint64_t x, int8_t r )
 {
   return (x << r) | (x >> (64 - r));
 }
@@ -42,7 +42,7 @@ static inline FORCE_INLINE uint64_t rotl64 ( uint64_t x, int8_t r )
 //-----------------------------------------------------------------------------
 // Finalization mix - force all bits of a hash block to avalanche
 
-static inline FORCE_INLINE uint32_t fmix32 ( uint32_t h )
+static FORCE_INLINE uint32_t fmix32 ( uint32_t h )
 {
   h ^= h >> 16;
   h *= 0x85ebca6b;
@@ -55,7 +55,7 @@ static inline FORCE_INLINE uint32_t fmix32 ( uint32_t h )
 
 //----------
 
-static inline FORCE_INLINE uint64_t fmix64 ( uint64_t k )
+static FORCE_INLINE uint64_t fmix64 ( uint64_t k )
 {
   k ^= k >> 33;
   k *= BIG_CONSTANT(0xff51afd7ed558ccd);
@@ -92,9 +92,9 @@ void MurmurHash3_x86_32 ( const void * key, int len,
     k1 *= c1;
     k1 = ROTL32(k1,15);
     k1 *= c2;
-    
+
     h1 ^= k1;
-    h1 = ROTL32(h1,13); 
+    h1 = ROTL32(h1,13);
     h1 = h1*5+0xe6546b64;
   }
 
@@ -121,7 +121,7 @@ void MurmurHash3_x86_32 ( const void * key, int len,
   h1 = fmix32(h1);
 
   *(uint32_t*)out = h1;
-} 
+}
 
 //-----------------------------------------------------------------------------
 
@@ -137,9 +137,9 @@ void MurmurHash3_x86_128 ( const void * key, const int len,
   uint32_t h3 = seed;
   uint32_t h4 = seed;
 
-  uint32_t c1 = 0x239b961b; 
+  uint32_t c1 = 0x239b961b;
   uint32_t c2 = 0xab0e9789;
-  uint32_t c3 = 0x38b34ae5; 
+  uint32_t c3 = 0x38b34ae5;
   uint32_t c4 = 0xa1e38b93;
 
   //----------
@@ -312,4 +312,3 @@ void MurmurHash3_x64_128 ( const void * key, const int len,
 }
 
 //-----------------------------------------------------------------------------
-
